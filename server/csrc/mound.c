@@ -1,5 +1,11 @@
 #include <stdio.h>
 
+// 堆排序算法关键
+// 节点点个数： |length / 2|
+// 叶子结点： length - |length / 2|
+// 从下往上，从右往左遍历节点
+// 节点与叶子节点进行比较大小：m与2m + 1 （左节点） 2m+ 2（右节点）
+// 出现交换，交换完成需要飙孙子节点，循环交换，直至2m + 1 不大于length
 void swap(int arr[], int m, int n){
     int temp = arr[m];
     arr[m] = arr[n];
