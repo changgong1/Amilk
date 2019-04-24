@@ -90,16 +90,71 @@ void hedp_sort(int arr[], int len) {
         max_heapify(arr, 0, i - 1);
     }
 }
- 
+
+void bubble_sort(int arr[], int len){
+    int i, j, tmp;
+    for (i = 0; i < len - 1; i++){
+        for (j = 0; j < len - i - 1; j ++) {
+            if(arr[j] < arr[j+1]){
+                swap(arr, j, j+1);
+            }
+        }
+    }
+}
+
+void select_sort(int arr[], int len) {
+    int i, j;
+    for(i = 0; i < len - 1; i++){
+        for(j = i + 1; j < len; j++) {
+            if(arr[i] < arr[j]) {
+                swap(arr, i, j);
+            }
+        }
+    }
+}
+
+void insert_sort(int arr[], int len) {
+    int i,j, c;
+    for (i = 0; i < len - 1; i++) {
+        c = arr[i + 1]; // 增加待插入数据
+        j = i;
+        while(j >= 0 && c < arr[j]){
+            arr[j + 1] = arr[j]; // 空出一位j+1给插入的数据
+            j--;
+        }
+        arr[j + 1] = c;
+    }
+}
+
+
+void Shell_sort(int arr[], int len) {
+    int i, j, temp, gap = len / 2;
+    while(gap > 0) {
+        for(i = gap; i < len; i++) {
+            temp = arr[i];
+            j = i - gap;
+            while(j >= 0 && arr[j] > temp){
+                arr[j + gap] = arr[j];
+                j -= gap;
+            }
+            arr[j + gap] = temp;
+        }
+        gap /= 2;
+    }
+}
 
 int main() {
     int arr[] = {3,5,1,7,9,6,1,3,4};
     int brr[] = {3,5,1,7,9,6,1,3,4};
+    int crr[] = {3,5,1,7,9,6,1,3,4};
     int len = (int)sizeof(arr) / sizeof(*arr);
     hedp_sort(arr, len);
     print(arr, len);
 
-    heap_sort(arr, len, &MinMound);
+    heap_sort(arr, len, &MaxMound);
     print(arr, len);
+
+    Shell_sort(crr, len);
+    print(crr, len);
     return 0;
 }
