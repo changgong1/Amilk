@@ -31,6 +31,7 @@ func (g *AmilkDBClient) GetCriterionListByMovieID(MovieID int) ([]CriterionSt, e
 	if err != nil {
 		return out, err
 	}
+	defer rows.Close()
 
 	for rows.Next() {
 		var Cst CriterionSt
