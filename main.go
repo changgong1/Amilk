@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"text/template"
 
-	"./server/mlogger"
+	"./server/gosrc/mlogger"
 )
 
 func main() {

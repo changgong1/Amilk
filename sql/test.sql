@@ -1,6 +1,8 @@
+use amilk;
 select 
-			ID, UserID, ObjectID, ObjectType, ScoreType,COMMENT, Article, ImageIDs
+			SourceName, TransNameID, ScoreType, Score, ScreenDate, DirectIDs, ActorIDs, ProducerIDs,    
+			PlaywrightIDs, TagSourceName, TagTransNameIDs, Outline, HonourIDs, ImageIDs, GbScore, MbScore, BdScore
 		from 
-			UserCriterionTbl
+			MovieCardTbl
 		where 
-			ObjectID = 1
+			ID = 1

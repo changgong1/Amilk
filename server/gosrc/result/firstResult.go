@@ -15,8 +15,8 @@ type FirstResult struct {
 	Msg   string
 }
 
-// Init initial a FirstResult
-func (R *FirstResult) Init(level int, Code, Msg string) {
+// InitResult initial a FirstResult
+func (R *FirstResult) InitResult(level int, Code, Msg string) {
 	R.Level = level
 	R.Code = Code
 	R.Msg = Msg

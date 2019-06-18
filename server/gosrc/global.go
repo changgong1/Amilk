@@ -3,4 +3,5 @@ import(
 	"./amilkdb"
 )
 
-var g_dbc amilkdb.AmilkDBClient
+var gDbc amilkdb.AmilkDBClient
+var gLogLevel string

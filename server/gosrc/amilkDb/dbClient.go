@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"../../mlogger"
+	"../mlogger"
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -47,7 +47,9 @@ func (g *AmilkDBClient) initDBClient(DBConfig Config) (err error) {
 			DBConfig.DBPassword,
 			"@tcp(", DBConfig.DBIP,
 			":", DBConfig.DBPort, ")/",
-			DBConfig.DBName, "?charset=utf8"},
+			DBConfig.DBName, "?charset=utf8",
+			"&parseTime=true",
+		},
 		"",
 	)
 	g.DBClient, err = sql.Open("mysql", path)

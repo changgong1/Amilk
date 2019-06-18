@@ -6,17 +6,17 @@ import (
 
 // Calculate the Movie Score
 func Calculate(MovieID int) error {
-	err := g_dbc.InitDBConfig("root", "123456", "localhost", "3306", "amilk", 100, 10)
+	err := gDbc.InitDBConfig("root", "123456", "localhost", "3306", "amilk", 100, 10)
 	if err != nil {
 		return err
 	}
 
 	// Gglobal is AmilkDBClient
-	ret, err := g_dbc.GetCriterionListByMovieID(MovieID)
+	ret, err := gDbc.GetCriterionListByMovieID(MovieID)
 	if err != nil {
 		return err
 	}
-	defer g_dbc.Close()
+	defer gDbc.Close()
 
 	fmt.Println("the MovieID len", len(ret))
 	return nil

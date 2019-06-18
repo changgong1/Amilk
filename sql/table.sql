@@ -1,3 +1,4 @@
+use amilk;
 DROP table if exists MovieCardTbl;
 Create table MovieCardTbl (
     ID  INT primary key auto_increment,
@@ -9,7 +10,7 @@ Create table MovieCardTbl (
     DirectIDs        VARCHAR(8)   COMMENT '导演',
     ActorIDs         VARCHAR(16)  COMMENT '演员',
     ProducerIDs      VARCHAR(8)   COMMENT '制片人',
-    Playwright       VARCHAR(8)   COMMENT '编剧',
+    PlaywrightIDs    VARCHAR(8)   COMMENT '编剧',
     TagSourceName    VARCHAR(20)  COMMENT '电影类别',
     TagTransNameIDs  VARCHAR(20)  COMMENT '电影类别',
     Outline          TEXT         COMMENT '故事梗概',
@@ -40,7 +41,7 @@ Create TABLE ArtistCardTbl (
 auto_increment = 1
 ENGINE=INNODB default CHARSET=utf8 COMMENT '艺人名片表';
 
-DROP table if exists ManyLanguageTbl;
+DROP table if exists ManyLanguageTbl;       # 该表同时是名词表，专有名词根据ID在这里查找对应语言的释译
 Create TABLE ManyLanguageTbl (
     ID INT primary key auto_increment,
     SourceTitle   VARCHAR(64) COMMENT '名字',
@@ -78,7 +79,8 @@ Create table UsersTbl(
     Password           VARCHAR(32)  COMMENT '密码',
     UserSourceName     VARCHAR(256) COMMENT '用户名',
     UserTransNameID    INT          COMMENT '名称多语言',
-    Birthdate          DATETIME     COMMENT '出生日期'
+    Birthdate          DATETIME     COMMENT '出生日期',
+    CreateTime         DATETIME     COMMENT '创建时间'
 )
 auto_increment = 1
 ENGINE=INNODB default CHARSET=utf8 COMMENT '用户表';
@@ -90,9 +92,10 @@ Create table UserCriterionTbl(
     ObjectID    INT          COMMENT '评价对象',
     ObjectType  INT          COMMENT '对象类型',    # 0-评论回复 1-影片, 2-艺人, 
     ScoreType   INT          COMMENT '评分类型',
-    COMMENT     TEXT         COMMENT '评价内容',
+    Comment     TEXT         COMMENT '评价内容',
     Article     TEXT         COMMENT '长文评价',
-    ImageIDs    VARCHAR(256) COMMENT '图片地址'
+    ImageIDs    VARCHAR(256) COMMENT '图片地址',
+    CreateTime  DATETIME     COMMENT '创建时间'
 )
 auto_increment = 1
 ENGINE=INNODB default CHARSET=utf8 COMMENT '动态表';
