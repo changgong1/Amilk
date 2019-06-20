@@ -14,6 +14,12 @@ type AmilkDBClient struct {
 	DBConfig Config
 	DBClient *sql.DB
 }
+// 对象类型
+const (
+	CommentType = iota
+	MovieType
+	ArtistType
+)
 
 // Config info
 type Config struct {

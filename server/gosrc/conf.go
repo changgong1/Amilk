@@ -1,7 +1,7 @@
 package gosrc
 
 import (
-	"time"
+	_ "time"
 )
 
 // Config define the dbconfig

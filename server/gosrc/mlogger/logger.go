@@ -20,6 +20,18 @@ const (
 	LevelTrace                // 用户级基本输出
 )
 
+// 日志等级和描述映射关系
+var LevelMap = map[string]int{
+	"EMER": LevelEmergency,
+	"ALRT": LevelAlert,
+	"CRIT": LevelCritical,
+	"EROR": LevelError,
+	"WARN": LevelWarning,
+	"INFO": LevelInformational,
+	"DEBG": LevelDebug,
+	"TRAC": LevelTrace,
+}
+
 // 日志记录等级字段
 var levelPrefix = [LevelTrace + 1]string{
 	"EMER",
@@ -32,6 +44,46 @@ var levelPrefix = [LevelTrace + 1]string{
 	"TRAC",
 }
 type levelType = string
+var defaultLogger *mLogger
+type mLogger struct {
+	LevelStr string
+	Level int
+}
+// SetMlogger set level
+func SetMlogger(level levelType) {
+	defaultLogger.LevelStr = level
+	if l, ok := LevelMap[level]; ok {
+		defaultLogger.Level = l
+	}
+}
+
+func (m *mLogger) Eror(f string, v ...interface{}) {
+	if m.Level < LevelError && m.LevelStr != "" {
+		return 
+	}
+	log.Printf(f, v...)
+}
+
+func (m *mLogger) Debg(f string, v ...interface{}) {
+	if m.Level < LevelDebug && m.LevelStr != "" {
+		return 
+	}
+	log.Printf(f, v...)
+}
+// Eror define a Debg
+func Error(f string,v ...interface{}){
+	defaultLogger.Eror(f, v...)
+}
+
+// Debg define a Debg
+func Debug(f string,v ...interface{}){
+	defaultLogger.Debg(f, v...)
+}
+
+// init a mLogger 
+func init(){
+	defaultLogger = new(mLogger)
+}
 
 // LogerDebgPrint is Print msg
 func LogerDebgPrint(level levelType, formating string, args ...interface{}) {

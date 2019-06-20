@@ -16,8 +16,8 @@ Create table MovieCardTbl (
     Outline          TEXT         COMMENT '故事梗概',
     HonourIDs        VARCHAR(8)   COMMENT '荣誉',
     ImageIDs         VARCHAR(256) COMMENT '图片地址',
-    GbScore          FLOAT        COMMENT '高分',
-    MbScore          FLOAT        COMMENT '中分',
+    GdScore          FLOAT        COMMENT '高分',
+    MdScore          FLOAT        COMMENT '中分',
     BdScore          FLOAT        COMMENT '低分'
 )
 auto_increment = 1
@@ -80,7 +80,7 @@ Create table UsersTbl(
     UserSourceName     VARCHAR(256) COMMENT '用户名',
     UserTransNameID    INT          COMMENT '名称多语言',
     Birthdate          DATETIME     COMMENT '出生日期',
-    CreateTime         DATETIME     COMMENT '创建时间'
+    CreateTime         timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
 )
 auto_increment = 1
 ENGINE=INNODB default CHARSET=utf8 COMMENT '用户表';
@@ -95,7 +95,8 @@ Create table UserCriterionTbl(
     Comment     TEXT         COMMENT '评价内容',
     Article     TEXT         COMMENT '长文评价',
     ImageIDs    VARCHAR(256) COMMENT '图片地址',
-    CreateTime  DATETIME     COMMENT '创建时间'
+    DropType    INT          COMMENT '删除标志',    # 0-正常数据, 1-删除的数据
+    CreateTime  timestamp NULL DEFAULT CURRENT_TIMESTAMP  COMMENT '创建时间'
 )
 auto_increment = 1
 ENGINE=INNODB default CHARSET=utf8 COMMENT '动态表';
