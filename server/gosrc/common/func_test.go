@@ -5,5 +5,5 @@ import (
 )
 func TestStrToTime(t *testing.T) {
 	a, err := StrToTime("2016-09-09")
-	fmt.Print(a, err)
+	fmt.Println(a, err)
 }

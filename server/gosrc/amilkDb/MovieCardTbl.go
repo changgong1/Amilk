@@ -21,8 +21,8 @@ type MovieCardTblSt struct {
 	Outline string 
 	HonourIDs string
 	ImageIDs string
-	GbScore float32
-	MbScore float32
+	GdScore float32
+	MdScore float32
 	BdScore float32
 }
 
@@ -31,7 +31,7 @@ func (g *AmilkDBClient) InsertMovieCardTbl(m MovieCardTblSt) error {
 	sql := `
 		insert into
 			MovieCardTbl (SourceName, TransNameID, ScoreType, Score, ScreenDate, DirectIDs, ActorIDs, ProducerIDs,    
-			PlaywrightIDs, TagSourceName, TagTransNameIDs, Outline, HonourIDs, ImageIDs, GbScore, MbScore, BdScore)
+			PlaywrightIDs, TagSourceName, TagTransNameIDs, Outline, HonourIDs, ImageIDs, GdScore, MdScore, BdScore)
 		value (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	`
 	stmt, err := g.DBClient.Prepare(sql)
@@ -40,7 +40,7 @@ func (g *AmilkDBClient) InsertMovieCardTbl(m MovieCardTblSt) error {
 		return err
 	}
 	_, err = stmt.Exec(m.SourceName, m.TransNameID, m.ScoreType, m.Score, m.ScreenDate.Format("2006-01-02 15:04:05"), m.DirectIDs, m.ActorIDs, m.ProducerIDs,
-		m.PlaywrightIDs, m.TagSourceName, m.TagTransNameIDs, m.Outline, m.HonourIDs, m.ImageIDs, m.GbScore, m.MbScore, m.BdScore)
+		m.PlaywrightIDs, m.TagSourceName, m.TagTransNameIDs, m.Outline, m.HonourIDs, m.ImageIDs, m.GdScore, m.MdScore, m.BdScore)
 	if err != nil {
 		mlogger.LogerPrint("InsertMovieCardTbl Exec failed, err:%s, sql:%s, m:%v", err.Error(), sql, m)
 		return err
@@ -55,7 +55,7 @@ func (g *AmilkDBClient) GetMovieCardTblByID (ID int) (MovieCardTblSt, error) {
 	sql := `
 		select 
 			ID, SourceName, TransNameID, ScoreType, Score, ScreenDate, DirectIDs, ActorIDs, ProducerIDs,    
-			PlaywrightIDs, TagSourceName, TagTransNameIDs, Outline, HonourIDs, ImageIDs, GbScore, MbScore, BdScore
+			PlaywrightIDs, TagSourceName, TagTransNameIDs, Outline, HonourIDs, ImageIDs, GdScore, MdScore, BdScore
 		from 
 			MovieCardTbl
 		where 
@@ -70,7 +70,7 @@ func (g *AmilkDBClient) GetMovieCardTblByID (ID int) (MovieCardTblSt, error) {
 	for rows.Next() {
 		rows.Scan(&r.ID, &r.SourceName, &r.TransNameID, &r.ScoreType, &r.Score, &r.ScreenDate, &r.DirectIDs, &r.ActorIDs,
 				&r.ProducerIDs, &r.PlaywrightIDs, &r.TagSourceName, &r.TagTransNameIDs, &r.Outline, &r.HonourIDs, &r.ImageIDs, 
-				&r.GbScore, &r.MbScore, &r.BdScore)
+				&r.GdScore, &r.MdScore, &r.BdScore)
 		if err != nil {
 			mlogger.LogerPrint("GetMovieCardTblByID Scan failed, err:%s, sql:%s, id:%v", err.Error(), sql, ID)
 		}

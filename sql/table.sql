@@ -16,8 +16,8 @@ Create table MovieCardTbl (
     Outline          TEXT         COMMENT '故事梗概',
     HonourIDs        VARCHAR(8)   COMMENT '荣誉',
     ImageIDs         VARCHAR(256) COMMENT '图片地址',
-    GbScore          FLOAT        COMMENT '高分',
-    MbScore          FLOAT        COMMENT '中分',
+    GdScore          FLOAT        COMMENT '高分',
+    MdScore          FLOAT        COMMENT '中分',
     BdScore          FLOAT        COMMENT '低分'
 )
 auto_increment = 1
